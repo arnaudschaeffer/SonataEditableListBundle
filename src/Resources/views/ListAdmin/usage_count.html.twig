@@ -1,0 +1,4 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+    <span class="badge">{% if field_description.options.data[object.code] is defined %}{{ field_description.options.data[object.code]|length }}{% else %}0{% endif %}</span>
+{% endblock %}

@@ -1,9 +1,7 @@
 <?php
 namespace Aschaeffer\SonataEditableListBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
 use Sonata\TranslationBundle\Traits\Gedmo\TranslatableTrait;
@@ -136,5 +134,10 @@ abstract class BaseItem extends AbstractPersonalTranslatable implements Translat
     public function setList(?BaseList $list): void
     {
         $this->list = $list;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

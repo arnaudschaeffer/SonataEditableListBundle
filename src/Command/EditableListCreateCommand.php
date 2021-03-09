@@ -2,7 +2,6 @@
 namespace Aschaeffer\SonataEditableListBundle\Command;
 
 use App\Entity\SonataEditableList;
-use Aschaeffer\SonataEditableListBundle\Entity\BaseList;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;

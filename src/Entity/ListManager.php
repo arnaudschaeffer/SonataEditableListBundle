@@ -3,9 +3,9 @@
 namespace Aschaeffer\SonataEditableListBundle\Entity;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Sonata\Doctrine\Entity\BaseEntityManager;
 
 
@@ -57,9 +57,9 @@ class ListManager extends BaseEntityManager
     {
         $classNames = [];
 
-//        foreach ($this->getEntityManager()->getMetadataFactory()->getAllMetadata() as $meta) {
-//            $classNames[] = $meta->getName();
-//        }
+        foreach ($this->getEntityManager()->getMetadataFactory()->getAllMetadata() as $meta) {
+            $classNames[] = $meta->getName();
+        }
 
         $usages = [];
 

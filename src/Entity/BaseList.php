@@ -3,8 +3,6 @@ namespace Aschaeffer\SonataEditableListBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
 use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
@@ -30,6 +28,14 @@ abstract class BaseList extends AbstractPersonalTranslatable implements Translat
     {
         parent::__construct();
         $this->items = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->code;
     }
 
     public function getEnabled(): ?bool

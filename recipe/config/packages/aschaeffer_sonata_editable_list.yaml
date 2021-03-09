@@ -1,0 +1,4 @@
+aschaeffer_sonata_editable_list:
+  class:
+    list: App\Entity\SonataEditableList
+    item: App\Entity\SonataEditableItem

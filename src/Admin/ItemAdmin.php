@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 class ItemAdmin extends AbstractAdmin
@@ -21,29 +22,24 @@ class ItemAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $fromList = false;
         $locale = null;
-        if ($this->hasParentFieldDescription()) {
-            $linkParameters = $this->getParentFieldDescription()->getOption('link_parameters', []);
-            $fromList = isset($linkParameters['from_list']);
-            $locale = isset($linkParameters['locale']);
 
-            if ($this->subject) {
-                $this->subject->setLocale($locale);
-                $this->subject->setTranslatableLocale($locale);
-            }
+        $showList = false;
+        if (!$this->hasParentFieldDescription() && $this->subject && $this->subject->getList()) {
+            $showList = true;
         }
 
         $formMapper
-            ->tab('admin.form.common.properties')
-                ->with('admin.form.common.properties', [
-                    'class'       => 'col-xs-12 col-lg-4',
-                ])
-                    ->add('name')
-                    ->add('value')
-                    ->add('enabled')
-                    ->add('position', HiddenType::class)
-                ->end()
+            ->with('form.with_properties', [
+                'class'       => 'col-xs-12 col-lg-4',
+            ])
+                ->ifTrue($showList)
+                    ->add('list', TextType::class, ['attr' => ['readonly' => true,],])
+                ->ifEnd()
+                ->add('name')
+                ->add('value')
+                ->add('enabled')
+                ->add('position', HiddenType::class)
             ->end()
         ;
     }

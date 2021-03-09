@@ -4,23 +4,23 @@
         <body>
             <trans-unit id="sonata_editable_list">
                 <source>sonata_editable_list</source>
-                <target>Liste éditable</target>
+                <target>Editable list</target>
             </trans-unit>
             <trans-unit id="label_lists">
                 <source>label_lists</source>
-                <target>Listes</target>
+                <target>Lists</target>
             </trans-unit>
             <trans-unit id="label_items">
                 <source>label_items</source>
-                <target>Eléments</target>
+                <target>Items</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_sonata_editable_list_list">
                 <source>breadcrumb.link_sonata_editable_list_list</source>
-                <target>Listes</target>
+                <target>Lists</target>
             </trans-unit>
             <trans-unit id="list.label_name">
                 <source>list.label_name</source>
-                <target>Libellé</target>
+                <target>Label</target>
             </trans-unit>
             <trans-unit id="list.label_description">
                 <source>list.label_description</source>
@@ -28,15 +28,15 @@
             </trans-unit>
             <trans-unit id="list.label_enabled">
                 <source>list.label_enabled</source>
-                <target>Activé</target>
+                <target>Enabled</target>
             </trans-unit>
             <trans-unit id="filter.label_name">
                 <source>filter.label_name</source>
-                <target>Libellé</target>
+                <target>Label</target>
             </trans-unit>
             <trans-unit id="filter.label_enabled">
                 <source>filter.label_enabled</source>
-                <target>Activé</target>
+                <target>Enabled</target>
             </trans-unit>
             <trans-unit id="form.label_code">
                 <source>form.label_code</source>
@@ -44,19 +44,19 @@
             </trans-unit>
             <trans-unit id="form.label_name">
                 <source>form.label_name</source>
-                <target>Libellé</target>
+                <target>Label</target>
             </trans-unit>
             <trans-unit id="form.label_items">
                 <source>form.label_items</source>
-                <target>Eléments</target>
+                <target>Items</target>
             </trans-unit>
             <trans-unit id="form.label_enabled">
                 <source>form.label_enabled</source>
-                <target>Activé</target>
+                <target>Enabled</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_item_list">
                 <source>breadcrumb.link_item_list</source>
-                <target>Eléments</target>
+                <target>Items</target>
             </trans-unit>
             <trans-unit id="form.label_slug">
                 <source>form.label_slug</source>
@@ -64,19 +64,19 @@
             </trans-unit>
             <trans-unit id="form.label_created_at">
                 <source>form.label_created_at</source>
-                <target>Crée le</target>
+                <target>Created at</target>
             </trans-unit>
             <trans-unit id="form.label_updated_at">
                 <source>form.label_updated_at</source>
-                <target>Mis à jour le</target>
+                <target>Updated at</target>
             </trans-unit>
             <trans-unit id="list.label_created_at">
                 <source>list.label_created_at</source>
-                <target>Crée le</target>
+                <target>Created at</target>
             </trans-unit>
             <trans-unit id="list.label_updated_at">
                 <source>list.label_updated_at</source>
-                <target>Mis à jour le</target>
+                <target>Updated at</target>
             </trans-unit>
             <trans-unit id="form.label_position">
                 <source>form.label_position</source>
@@ -98,14 +98,6 @@
                 <source>filter.label_parent</source>
                 <target>Parent</target>
             </trans-unit>
-            <trans-unit id="form.label_media">
-                <source>form.label_media</source>
-                <target>Média</target>
-            </trans-unit>
-            <trans-unit id="breadcrumb.link_context_list">
-                <source>breadcrumb.link_context_list</source>
-                <target>Contextes</target>
-            </trans-unit>
             <trans-unit id="list.label_id">
                 <source>list.label_id</source>
                 <target>Code</target>
@@ -114,85 +106,37 @@
                 <source>filter.label_id</source>
                 <target>Code</target>
             </trans-unit>
-            <trans-unit id="label_contexts">
-                <source>label_contexts</source>
-                <target>Contextes</target>
-            </trans-unit>
-            <trans-unit id="form.label_id">
-                <source>form.label_id</source>
-                <target>Code</target>
-            </trans-unit>
-            <trans-unit id="filter.label_context">
-                <source>filter.label_context</source>
-                <target>Contexte</target>
-            </trans-unit>
-            <trans-unit id="list.label_context">
-                <source>list.label_context</source>
-                <target>Contexte</target>
-            </trans-unit>
-            <trans-unit id="active">
-                <source>active</source>
-                <target>Actif</target>
-            </trans-unit>
             <trans-unit id="disabled">
                 <source>disabled</source>
-                <target>Désactivé</target>
+                <target>Disabled</target>
             </trans-unit>
             <trans-unit id="form.label_list">
                 <source>form.label_list</source>
-                <target>Liste</target>
+                <target>List</target>
             </trans-unit>
             <trans-unit id="form.label_item">
                 <source>form.label_item</source>
-                <target>Elément</target>
-            </trans-unit>
-            <trans-unit id="form.label_title">
-                <source>form.label_title</source>
-                <target>Titre</target>
+                <target>Item</target>
             </trans-unit>
             <trans-unit id="no_lists_found">
                 <source>no_lists_found</source>
-                <target>Aucune Liste trouvée</target>
+                <target>No List found</target>
             </trans-unit>
             <trans-unit id="no_items_found">
                 <source>no_items_found</source>
-                <target>Aucun élément trouvé</target>
-            </trans-unit>
-            <trans-unit id="form.label_context">
-                <source>form.label_context</source>
-                <target>Contexte</target>
+                <target>No items found</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_item_create">
                 <source>breadcrumb.link_item_create</source>
-                <target>Ajouter</target>
+                <target>Add</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_list_create">
                 <source>breadcrumb.link_list_create</source>
-                <target>Ajouter</target>
-            </trans-unit>
-            <trans-unit id="breadcrumb.link_context_create">
-                <source>breadcrumb.link_context_create</source>
-                <target>Ajouter</target>
+                <target>Add</target>
             </trans-unit>
             <trans-unit id="form.label_translation_domain">
                 <source>form.label_translation_domain</source>
-                <target>Domaine de traduction</target>
-            </trans-unit>
-            <trans-unit id="form.label_icon">
-                <source>form.label_icon</source>
-                <target>Icône</target>
-            </trans-unit>
-            <trans-unit id="form.label_class">
-                <source>form.label_class</source>
-                <target>Classe CSS</target>
-            </trans-unit>
-            <trans-unit id="group_general">
-                <source>group_general</source>
-                <target>Général</target>
-            </trans-unit>
-            <trans-unit id="group_options">
-                <source>group_options</source>
-                <target>Options</target>
+                <target>Translation domain</target>
             </trans-unit>
         </body>
     </file>

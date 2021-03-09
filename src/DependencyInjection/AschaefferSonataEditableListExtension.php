@@ -4,10 +4,10 @@ namespace Aschaeffer\SonataEditableListBundle\DependencyInjection;
 
 use Sonata\Doctrine\Mapper\DoctrineCollector;
 use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
 
 
 class AschaefferSonataEditableListExtension extends Extension
@@ -23,8 +23,6 @@ class AschaefferSonataEditableListExtension extends Extension
         $loader->load('orm.xml');
         $loader->load('admin_orm.xml');
         $loader->load('command.xml');
-
-        $this->registerSonataDoctrineMapping($config);
 
         $this->configureAdminClass($config, $container);
         $this->configureTranslationDomain($config, $container);
@@ -68,31 +66,5 @@ class AschaefferSonataEditableListExtension extends Extension
     {
         $container->setParameter('aschaeffer.sonataeditablelist.admin.list.translation_domain', $config['admin']['list']['translation']);
         $container->setParameter('aschaeffer.sonataeditablelist.admin.item.translation_domain', $config['admin']['item']['translation']);
-    }
-
-    private function registerSonataDoctrineMapping(array $config): void
-    {
-        foreach ($config['class'] as $type => $class) {
-            if (!class_exists($class)) {
-                return;
-            }
-        }
-
-        $collector = DoctrineCollector::getInstance();
-
-//        $collector->addAssociation(
-//            $config['class']['user'],
-//            'mapManyToMany',
-//            OptionsBuilder::createManyToMany('groups', $config['class']['group'])
-//                ->addJoinTable($config['table']['user_group'], [[
-//                    'name' => 'user_id',
-//                    'referencedColumnName' => 'id',
-//                    'onDelete' => 'CASCADE',
-//                ]], [[
-//                    'name' => 'group_id',
-//                    'referencedColumnName' => 'id',
-//                    'onDelete' => 'CASCADE',
-//                ]])
-//        );
     }
 }

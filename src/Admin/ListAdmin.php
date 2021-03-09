@@ -65,7 +65,7 @@ class ListAdmin extends AbstractAdmin
             $usages = $this->listManager->getEntitiesUsage($this->subject->getCode());
 
             if (!empty($usages)) {
-                $description = $this->getTranslator()->trans("This list is used in the following entites:", [], $this->translationDomain) . "<br/><ul>";
+                $description = $this->getTranslator()->trans("form.header_help", [], $this->translationDomain) . "<br/><ul>";
                 foreach ($usages as $entity => $properties) {
                     $description .= "<li>" . $entity. " : " . implode(', ', $properties) . "</li>";
                 }
@@ -73,10 +73,9 @@ class ListAdmin extends AbstractAdmin
             }
         }
 
-
         $isNew = $this->isCurrentRoute('create');
         $formMapper
-            ->with('List properties', [
+            ->with('form.with_properties', [
                 'description' => $description,
                 'class'       => 'col-xs-12 col-lg-6',
             ])
@@ -85,9 +84,7 @@ class ListAdmin extends AbstractAdmin
                 ->add('enabled')
             ->end()
             ->ifTrue(!$this->isCurrentRoute('create'))
-                ->with('Items', [
-                    'description' => !empty($this->subject->getItems()->count()) ?"<p><i class='fa fa-warning'></i> Updating a value of a list item <b>does NOT alter</b> records using this element.</p><p>If you willing to update values, you should check all records using it and check whether or not changes has to be maid.</p>" : "",
-                ])
+                ->with('form.with_items')
                 ->add('items', CollectionType::class, ['by_reference' => false], [
                         'edit' => 'inline',
                         'inline' => 'table',
@@ -97,14 +94,6 @@ class ListAdmin extends AbstractAdmin
                 ->end()
             ->ifEnd()
         ;
-
-    }
-
-    public function validate(ErrorElement $errorElement, $object)
-    {
-        foreach ($object->getItems() as $item) {
-            $item->setLocale($object->getItems()->getOwner()->getLocale());
-        }
     }
 
     protected function configureListFields(ListMapper $listMapper)
@@ -116,5 +105,12 @@ class ListAdmin extends AbstractAdmin
             ->add('itemCount', null, ['template' => '@AschaefferSonataEditableList/ListAdmin/badge_count.html.twig',])
             ->add('usage', null, ['template' => '@AschaefferSonataEditableList/ListAdmin/usage_count.html.twig', 'data' => $this->listManager->getEntitiesUsage()])
         ;
+    }
+
+    public function validate(ErrorElement $errorElement, $object)
+    {
+        foreach ($object->getItems() as $item) {
+            $item->setLocale($object->getLocale());
+        }
     }
 }

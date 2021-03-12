@@ -2,11 +2,11 @@
 
 namespace Aschaeffer\SonataEditableListBundle\DependencyInjection;
 
-use Aschaeffer\SonataEditableListBundle\Admin\ItemAdmin;
-use Aschaeffer\SonataEditableListBundle\Admin\ListAdmin;
-use Aschaeffer\SonataEditableListBundle\Entity\BaseItem;
-use Aschaeffer\SonataEditableListBundle\Entity\BaseList;
 use Sonata\AdminBundle\Controller\CRUDController;
+use Aschaeffer\SonataEditableListBundle\Admin\ListAdmin;
+use Aschaeffer\SonataEditableListBundle\Admin\ItemAdmin;
+use Aschaeffer\SonataEditableListBundle\Entity\BaseList;
+use Aschaeffer\SonataEditableListBundle\Entity\BaseItem;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 

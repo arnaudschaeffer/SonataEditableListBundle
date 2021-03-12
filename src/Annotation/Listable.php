@@ -9,6 +9,8 @@ use Doctrine\Common\Annotations\Annotation;
  */
 class Listable
 {
+    const ANNOTATION_NAME = 'Aschaeffer\\SonataEditableListBundle\\Annotation\\Listable';
+
     /**
      * @Required
      *

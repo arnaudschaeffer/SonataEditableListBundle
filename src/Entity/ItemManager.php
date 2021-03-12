@@ -3,13 +3,13 @@
 namespace Aschaeffer\SonataEditableListBundle\Entity;
 
 use Aschaeffer\SonataEditableListBundle\Annotation\Listable;
-use Aschaeffer\SonataEditableListBundle\Model\ItemManagerInterface;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use Sonata\DatagridBundle\Pager\Doctrine\Pager;
 use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
 use Sonata\Doctrine\Entity\BaseEntityManager;
+use Aschaeffer\SonataEditableListBundle\Model\ItemManagerInterface;
 
 class ItemManager extends BaseEntityManager implements ItemManagerInterface
 {

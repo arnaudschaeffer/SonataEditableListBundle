@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Aschaeffer\SonataEditableListBundle\Form\Type;
 
 use App\Entity\Piece;
+use Aschaeffer\SonataEditableListBundle\Entity\BaseItem;
 use Aschaeffer\SonataEditableListBundle\Entity\ItemManager;
 use Aschaeffer\SonataEditableListBundle\Form\ChoiceList\ItemChoiceLoader;
 use Sonata\AdminBundle\Form\Type\ModelType;

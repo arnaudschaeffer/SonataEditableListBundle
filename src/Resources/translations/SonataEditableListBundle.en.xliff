@@ -2,8 +2,8 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" datatype="plaintext" original="">
         <body>
-            <trans-unit id="sonata_editable_list">
-                <source>sonata_editable_list</source>
+            <trans-unit id="sonata_editablelist">
+                <source>sonata_editablelist</source>
                 <target>Editable list</target>
             </trans-unit>
             <trans-unit id="label_lists">
@@ -18,17 +18,41 @@
                 <source>breadcrumb.link_sonata_editable_list_list</source>
                 <target>Lists</target>
             </trans-unit>
+            <trans-unit id="list.label_code">
+                <source>list.label_code</source>
+                <target>Code</target>
+            </trans-unit>
             <trans-unit id="list.label_name">
                 <source>list.label_name</source>
                 <target>Label</target>
             </trans-unit>
-            <trans-unit id="list.label_description">
-                <source>list.label_description</source>
-                <target>Description</target>
-            </trans-unit>
             <trans-unit id="list.label_enabled">
                 <source>list.label_enabled</source>
                 <target>Enabled</target>
+            </trans-unit>
+            <trans-unit id="list.label_item_count">
+                <source>list.label_item_count</source>
+                <target>Items count</target>
+            </trans-unit>
+            <trans-unit id="list.label_usage">
+                <source>list.label_usage</source>
+                <target>Usage</target>
+            </trans-unit>
+            <trans-unit id="form.with_properties">
+                <source>form.with_properties</source>
+                <target>Properties</target>
+            </trans-unit>
+            <trans-unit id="form.with_items">
+                <source>form.with_items</source>
+                <target>Items</target>
+            </trans-unit>
+            <trans-unit id="form.header_help">
+                <source>form.header_help</source>
+                <target>This list is used in the following entites:</target>
+            </trans-unit>
+            <trans-unit id="form.items_help">
+                <source>form.items_help</source>
+                <target><![CDATA[<p><i class='fa fa-warning'></i> Updating a value of a list item <b>does NOT alter</b> records using this element.</p><p>If you willing to update values, you should check all records using it and check whether or not changes has to be maid.</p>]]></target>
             </trans-unit>
             <trans-unit id="filter.label_name">
                 <source>filter.label_name</source>
@@ -46,6 +70,10 @@
                 <source>form.label_name</source>
                 <target>Label</target>
             </trans-unit>
+            <trans-unit id="form.label_value">
+                <source>form.label_value</source>
+                <target>Value</target>
+            </trans-unit>
             <trans-unit id="form.label_items">
                 <source>form.label_items</source>
                 <target>Items</target>
@@ -57,10 +85,6 @@
             <trans-unit id="breadcrumb.link_item_list">
                 <source>breadcrumb.link_item_list</source>
                 <target>Items</target>
-            </trans-unit>
-            <trans-unit id="form.label_slug">
-                <source>form.label_slug</source>
-                <target>Slug</target>
             </trans-unit>
             <trans-unit id="form.label_created_at">
                 <source>form.label_created_at</source>
@@ -82,34 +106,14 @@
                 <source>form.label_position</source>
                 <target>Position</target>
             </trans-unit>
-            <trans-unit id="form.label_parent">
-                <source>form.label_parent</source>
-                <target>Parent</target>
-            </trans-unit>
-            <trans-unit id="list.label_position">
-                <source>list.label_position</source>
-                <target>Position</target>
-            </trans-unit>
-            <trans-unit id="list.label_parent">
-                <source>list.label_parent</source>
-                <target>Parent</target>
-            </trans-unit>
-            <trans-unit id="filter.label_parent">
-                <source>filter.label_parent</source>
-                <target>Parent</target>
-            </trans-unit>
-            <trans-unit id="list.label_id">
-                <source>list.label_id</source>
-                <target>Code</target>
-            </trans-unit>
-            <trans-unit id="filter.label_id">
-                <source>filter.label_id</source>
-                <target>Code</target>
-            </trans-unit>
-            <trans-unit id="disabled">
-                <source>disabled</source>
-                <target>Disabled</target>
-            </trans-unit>
+            <trans-unit id="active">
+               <source>active</source>
+               <target>active</target>
+           </trans-unit>
+           <trans-unit id="disabled">
+               <source>disabled</source>
+               <target>disabled</target>
+           </trans-unit>
             <trans-unit id="form.label_list">
                 <source>form.label_list</source>
                 <target>List</target>
@@ -120,11 +124,11 @@
             </trans-unit>
             <trans-unit id="no_lists_found">
                 <source>no_lists_found</source>
-                <target>No List found</target>
+                <target>No list found</target>
             </trans-unit>
             <trans-unit id="no_items_found">
                 <source>no_items_found</source>
-                <target>No items found</target>
+                <target>No item found</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_item_create">
                 <source>breadcrumb.link_item_create</source>
@@ -134,9 +138,17 @@
                 <source>breadcrumb.link_list_create</source>
                 <target>Add</target>
             </trans-unit>
-            <trans-unit id="form.label_translation_domain">
-                <source>form.label_translation_domain</source>
-                <target>Translation domain</target>
+            <trans-unit id="form.label_icon">
+                <source>form.label_icon</source>
+                <target>Icône</target>
+            </trans-unit>
+            <trans-unit id="form.label_class">
+                <source>form.label_class</source>
+                <target>Classe CSS</target>
+            </trans-unit>
+            <trans-unit id="group_general">
+                <source>group_general</source>
+                <target>Général</target>
             </trans-unit>
         </body>
     </file>

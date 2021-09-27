@@ -114,7 +114,7 @@ class EditableListCreateCommand extends Command
             }
 
             foreach ($class->getProperties() as $property) {
-                $listable = $this->annotationReader->getPropertyAnnotation($property, 'App\\Annotation\\Listable');
+                $listable = $this->annotationReader->getPropertyAnnotation($property, 'Aschaeffer\\SonataEditableListBundle\\Annotation\\Listable');
                 if (!$listable) {
                     continue;
                 }

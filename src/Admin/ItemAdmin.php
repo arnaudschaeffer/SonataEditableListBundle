@@ -5,6 +5,7 @@ namespace Aschaeffer\SonataEditableListBundle\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -20,10 +21,19 @@ class ItemAdmin extends AbstractAdmin
         '_sort_by' => 'updated_at',
     ];
 
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+        ->add('list', TextType::class, ['attr' => ['readonly' => true,],])
+
+        ->add('name', null, ['required' => true,])
+        ->add('value', null, ['required' => true,])
+        ->add('enabled')
+            ;
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $locale = null;
-
         $showList = false;
         if (!$this->hasParentFieldDescription() && $this->subject && $this->subject->getList()) {
             $showList = true;

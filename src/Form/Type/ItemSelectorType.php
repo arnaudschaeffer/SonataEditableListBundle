@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Aschaeffer\SonataEditableListBundle\Form\Type;
 
-use App\Entity\Piece;
-use Aschaeffer\SonataEditableListBundle\Entity\BaseItem;
 use Aschaeffer\SonataEditableListBundle\Entity\ItemManager;
 use Aschaeffer\SonataEditableListBundle\Form\ChoiceList\ItemChoiceLoader;
 use Sonata\AdminBundle\Form\Type\ModelType;
@@ -16,7 +14,8 @@ use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\VarDumper\VarDumper;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class ItemSelectorType extends AbstractType
@@ -26,9 +25,28 @@ class ItemSelectorType extends AbstractType
      */
     protected $manager;
 
-    public function __construct(ManagerInterface $manager)
+    /**
+     * @var RouterInterface
+     */
+    protected $router;
+
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
+
+    /**
+     * @var string
+     */
+    protected $code;
+
+    public function __construct(ManagerInterface $manager,
+                                RouterInterface $router,
+                                TranslatorInterface $translator)
     {
         $this->manager = $manager;
+        $this->router = $router;
+        $this->translator = $translator;
     }
 
     /**
@@ -44,22 +62,22 @@ class ItemSelectorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'code' => null,
             'choice_loader' => function (Options $opts): ChoiceLoaderInterface {
                 return new ItemChoiceLoader(array_flip($this->getChoices($opts)));
             },
+            'help' => function(Options $opts): string{
+                $code = $this->getCode($opts);
+
+                return '<a href="' . $this->router->generate('editablelist/list_edit', ['id' => $code,]) . '" target="_blank"><i class="fa fa-pencil" aria-hidden="true"></i> ' . $this->translator->trans('list.edit_link', [], 'SonataEditableListBundle') . '</a>';
+            },
+            'help_html' => true,
             'btn_add' => false,
             'field_name' => null,
             'class_name' => null,
         ]);
     }
 
-    /**
-     * @param Options $options
-     * @return array
-     * @throws \Exception
-     */
-    public function getChoices(Options $options)
+    protected function getCode(Options $options)
     {
         $className = $this->getClass($options);
         $fieldName = $this->getFieldName($options);
@@ -69,7 +87,18 @@ class ItemSelectorType extends AbstractType
             throw new \Exception(sprintf("Is there a @Listable annotation on property %s for entity %s ?", $className, $fieldName));
         }
 
-        $items = $this->manager->getChoices($code, $locale = null);
+        return $code;
+    }
+
+    /**
+     * @param Options $options
+     * @return array
+     * @throws \Exception
+     */
+    public function getChoices(Options $options)
+    {
+        $code = $this->getCode($options);
+        $items = $this->manager->getChoices($code);
 
         $choices = [];
 

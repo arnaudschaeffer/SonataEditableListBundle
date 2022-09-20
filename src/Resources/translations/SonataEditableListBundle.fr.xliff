@@ -122,6 +122,22 @@
                 <source>form.label_item</source>
                 <target>Élément</target>
             </trans-unit>
+             <trans-unit id="show.label_list">
+                    <source>show.label_list</source>
+                    <target>Liste</target>
+                </trans-unit>
+                <trans-unit id="show.label_name">
+                    <source>show.label_name</source>
+                    <target>Libellé</target>
+                </trans-unit>
+                <trans-unit id="show.label_value">
+                    <source>show.label_value</source>
+                    <target>Valeur</target>
+                </trans-unit>
+                <trans-unit id="show.label_enabled">
+                    <source>show.label_enabled</source>
+                    <target>Activé</target>
+                </trans-unit>
             <trans-unit id="no_lists_found">
                 <source>no_lists_found</source>
                 <target>Aucune Liste trouvée</target>
@@ -165,6 +181,10 @@
             <trans-unit id="group_options">
                 <source>group_options</source>
                 <target>Options</target>
+            </trans-unit>
+            <trans-unit id="list.edit_link">
+                <source>list.edit_link</source>
+                <target>Ajouter/Editer les valeurs de cette liste</target>
             </trans-unit>
         </body>
     </file>

@@ -67,6 +67,9 @@ class ItemSelectorType extends AbstractType
             },
             'help' => function(Options $opts): string{
                 $code = $this->getCode($opts);
+                if (!$code) {
+                    return "";
+                }
 
                 return '<a href="' . $this->router->generate('editablelist/list_edit', ['id' => $code,]) . '" target="_blank"><i class="fa fa-pencil" aria-hidden="true"></i> ' . $this->translator->trans('list.edit_link', [], 'SonataEditableListBundle') . '</a>';
             },
@@ -74,11 +77,15 @@ class ItemSelectorType extends AbstractType
             'btn_add' => false,
             'field_name' => null,
             'class_name' => null,
+            'listable_code' => null,
         ]);
     }
 
     protected function getCode(Options $options)
     {
+        if (isset($options['listable_code'])) {
+            return $options['listable_code'];
+        }
         $className = $this->getClass($options);
         $fieldName = $this->getFieldName($options);
         $code = $this->manager->getListableCode($className, $fieldName);

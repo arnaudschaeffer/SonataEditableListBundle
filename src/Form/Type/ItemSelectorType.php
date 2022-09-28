@@ -68,6 +68,7 @@ class ItemSelectorType extends AbstractType
             'help' => function(Options $opts): string{
                 $code = $this->getCode($opts);
                 if (!$code) {
+
                     return "";
                 }
 
@@ -83,9 +84,10 @@ class ItemSelectorType extends AbstractType
 
     protected function getCode(Options $options)
     {
-        if (isset($options['listable_code'])) {
+        if (array_key_exists('listable_code', $options)) {
             return $options['listable_code'];
         }
+
         $className = $this->getClass($options);
         $fieldName = $this->getFieldName($options);
         $code = $this->manager->getListableCode($className, $fieldName);

@@ -12,18 +12,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ItemAdmin extends AbstractAdmin
 {
-    protected $baseRouteName = 'editablelist/item';
-    protected $baseRoutePattern = 'editablelist/item';
+    protected string $baseRouteName = 'editablelist/item';
+    protected string $baseRoutePattern = 'editablelist/item';
 
-    protected $datagridValues = [
+    protected array $datagridValues = [
         '_page' => 1,
         '_sort_order' => 'DESC',
         '_sort_by' => 'updated_at',
     ];
 
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $show): void
     {
-        $showMapper
+        $show
         ->add('list', TextType::class, ['attr' => ['readonly' => true,],])
 
         ->add('name', null, ['required' => true,])
@@ -32,14 +32,14 @@ class ItemAdmin extends AbstractAdmin
             ;
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $form): void
     {
         $showList = false;
-        if (!$this->hasParentFieldDescription() && $this->subject && $this->subject->getList()) {
+        if (!$this->hasParentFieldDescription() && $this->getSubject() && $this->getSubject()->getList()) {
             $showList = true;
         }
 
-        $formMapper
+        $form
             ->with('form.with_properties', [
                 'class'       => 'col-xs-12 col-lg-4',
             ])
@@ -54,10 +54,9 @@ class ItemAdmin extends AbstractAdmin
         ;
     }
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $list): void
     {
-
-        $listMapper
+        $list
             ->addIdentifier('value', null, ['route' => ['name' => 'edit']])
             ->add('name')
             ->add('list.code')

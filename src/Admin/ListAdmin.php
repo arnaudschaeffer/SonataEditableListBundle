@@ -14,8 +14,8 @@ use Sonata\Form\Validator\ErrorElement;
 
 class ListAdmin extends AbstractAdmin
 {
-    protected $baseRouteName = 'editablelist/list';
-    protected $baseRoutePattern = 'editablelist/list';
+    protected string $baseRouteName = 'editablelist/list';
+    protected string $baseRoutePattern = 'editablelist/list';
 
     protected $datagridValues = [
         '_page' => 1,
@@ -23,20 +23,9 @@ class ListAdmin extends AbstractAdmin
         '_sort_by' => 'updated_at',
     ];
 
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-
-    /**
-     * @var ListManager
-     */
-    protected $listManager;
-    
-    /**
-     * @var Reader
-     */
-    protected $annotationReader;
+    protected EntityManagerInterface $em;
+    protected ListManager $listManager;
+    protected Reader $annotationReader;
 
     public function __construct(string $code,
                                 string $class,
@@ -50,22 +39,19 @@ class ListAdmin extends AbstractAdmin
         $this->listManager = $listManager;
     }
 
-    /**
-     * @return ListManager
-     */
-    public function getListManager()
+    public function getListManager(): ListManager
     {
         return $this->listManager;
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $form): void
     {
         $description = "";
         if (!$this->isCurrentRoute('create')) {
-            $usages = $this->listManager->getEntitiesUsage($this->subject->getCode());
+            $usages = $this->listManager->getEntitiesUsage($this->getSubject()->getCode());
 
             if (!empty($usages)) {
-                $description = $this->getTranslator()->trans("form.header_help", [], $this->translationDomain) . "<br/><ul>";
+                $description = $this->getTranslator()->trans("form.header_help", [], $this->getTranslationDomain()) . "<br/><ul>";
                 foreach ($usages as $entity => $properties) {
                     $description .= "<li>" . $entity. " : " . implode(', ', $properties) . "</li>";
                 }
@@ -74,7 +60,7 @@ class ListAdmin extends AbstractAdmin
         }
 
         $isNew = $this->isCurrentRoute('create');
-        $formMapper
+        $form
             ->with('form.with_properties', [
                 'description' => $description,
                 'class'       => 'col-xs-12 col-lg-6',
@@ -89,16 +75,16 @@ class ListAdmin extends AbstractAdmin
                         'edit' => 'inline',
                         'inline' => 'table',
                         'sortable' => 'position',
-                        'link_parameters' => ['from_list' => true, 'locale' => $this->subject->getLocale(),],
+                        'link_parameters' => ['from_list' => true, 'locale' => $this->getSubject()->getLocale(),],
                     ])
                 ->end()
             ->ifEnd()
         ;
     }
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $list): void
     {
-        $listMapper
+        $list
             ->addIdentifier('code')
             ->add('name')
             ->add('enabled', null, ['editable' => true])

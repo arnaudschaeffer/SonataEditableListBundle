@@ -18,7 +18,12 @@ class AdminExtensionCompilerPass implements CompilerPassInterface
 
         foreach ($container->findTaggedServiceIds('sonata.admin') as $id => $attributes) {
             $admin = $container->getDefinition($id);
-            $modelClass = $container->getParameterBag()->resolveValue($admin->getArgument(1));
+            $arguments = $admin->getArguments();
+            if (!isset($arguments[1])) {
+                continue;
+            }
+
+            $modelClass = $container->getParameterBag()->resolveValue($arguments[1]);
             if (!$modelClass || !class_exists($modelClass)) {
                 continue;
             }

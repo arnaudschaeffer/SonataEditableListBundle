@@ -10,22 +10,13 @@ use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 
 final class ItemChoiceLoader implements ChoiceLoaderInterface
 {
-    /**
-     * The loaded choice list.
-     *
-     * @var ArrayChoiceList
-     */
-    private $choiceList;
-
-    /**
-     * @var array
-     */
-    private $choices;
+    private ArrayChoiceList $choiceList;
+    private array $choices;
 
     /**
      * @param array $choices
      */
-    public function __construct($choices)
+    public function __construct(array $choices)
     {
         $this->choices = $choices;
     }
@@ -39,7 +30,7 @@ final class ItemChoiceLoader implements ChoiceLoaderInterface
         return $this->choiceList = new ArrayChoiceList($this->choices, $value);
     }
 
-    public function loadChoicesForValues(array $values, $value = null)
+    public function loadChoicesForValues(array $values, $value = null): array
     {
         if (empty($values)) {
             return [];
@@ -48,7 +39,7 @@ final class ItemChoiceLoader implements ChoiceLoaderInterface
         return $this->loadChoiceList($value)->getChoicesForValues($values);
     }
 
-    public function loadValuesForChoices(array $choices, $value = null)
+    public function loadValuesForChoices(array $choices, $value = null): array
     {
         if (empty($choices)) {
             return [];

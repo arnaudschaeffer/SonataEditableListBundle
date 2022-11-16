@@ -12,8 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ItemAdmin extends AbstractAdmin
 {
-    protected string $baseRouteName = 'editablelist/item';
-    protected string $baseRoutePattern = 'editablelist/item';
+    protected $baseRouteName = 'editablelist/item';
+    protected $baseRoutePattern = 'editablelist/item';
 
     protected array $datagridValues = [
         '_page' => 1,

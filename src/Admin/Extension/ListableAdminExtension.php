@@ -21,7 +21,7 @@ class ListableAdminExtension extends AbstractAdminExtension
     /**
      * @var AnnotationReader
      */
-    protected $annotationReader;
+    protected AnnotationReader $annotationReader;
 
     /**
      * @var ItemManager

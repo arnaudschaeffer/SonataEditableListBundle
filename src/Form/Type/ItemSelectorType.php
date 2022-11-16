@@ -4,41 +4,24 @@ declare(strict_types=1);
 
 namespace Aschaeffer\SonataEditableListBundle\Form\Type;
 
-use Aschaeffer\SonataEditableListBundle\Entity\ItemManager;
 use Aschaeffer\SonataEditableListBundle\Form\ChoiceList\ItemChoiceLoader;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\Doctrine\Model\ManagerInterface;
-use Sonata\DoctrineORMAdminBundle\Admin\FieldDescription;
+use Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class ItemSelectorType extends AbstractType
 {
-    /**
-     * @var ItemManager
-     */
-    protected $manager;
-
-    /**
-     * @var RouterInterface
-     */
-    protected $router;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
-     * @var string
-     */
-    protected $code;
+    protected ManagerInterface $manager;
+    protected RouterInterface $router;
+    protected TranslatorInterface $translator;
+    protected string $code;
 
     public function __construct(ManagerInterface $manager,
                                 RouterInterface $router,
@@ -47,16 +30,6 @@ class ItemSelectorType extends AbstractType
         $this->manager = $manager;
         $this->router = $router;
         $this->translator = $translator;
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/classification-bundle 3.10, to be removed in version 4.0.
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
     }
 
     public function configureOptions(OptionsResolver $resolver)

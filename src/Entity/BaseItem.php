@@ -1,79 +1,44 @@
 <?php
 namespace Aschaeffer\SonataEditableListBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\TranslatableTrait;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
-abstract class BaseItem extends AbstractPersonalTranslatable implements TranslatableInterface
+abstract class BaseItem implements TranslatableInterface, TimestampableInterface
 {
-    use TimestampableEntity;
-
+    use TimestampableTrait;
     use TranslatableTrait;
 
-    /**
-     * @var int
-     */
-    protected $id;
+    protected ?int $id;
+    protected ?string $name;
+    protected ?string $value;
+    protected int $position = 1;
+    protected bool $enabled = true;
+    protected ?BaseList $list;
 
-    /**
-     * @var string
-     */
-    protected $name;
 
-    /**
-     * @var string
-     */
-    protected $value;
-
-    /**
-     * @var int
-     */
-    protected $position = 1;
-
-    /**
-     * @var bool $enabled
-     */
-    protected $enabled = true;
-
-    /**
-     * @var BaseList
-     */
-    protected $list;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
+    public function setId($id): self
     {
         $this->id = $id;
+        return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
-    public function setName(?string $name): void
+    public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getEnabled(): ?bool
@@ -96,12 +61,10 @@ abstract class BaseItem extends AbstractPersonalTranslatable implements Translat
         return $this->value;
     }
 
-    /**
-     * @param string $value
-     */
-    public function setValue(?string $value): void
+    public function setValue(?string $value): self
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
@@ -112,27 +75,17 @@ abstract class BaseItem extends AbstractPersonalTranslatable implements Translat
         return $this->position;
     }
 
-    /**
-     * @param int $position
-     * @return BaseItem
-     */
     public function setPosition(int $position): BaseItem
     {
         $this->position = $position;
         return $this;
     }
 
-    /**
-     * @return BaseList
-     */
     public function getList(): ?BaseList
     {
         return $this->list;
     }
 
-    /**
-     * @param BaseList $list
-     */
     public function setList(?BaseList $list): void
     {
         $this->list = $list;

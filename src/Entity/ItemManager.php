@@ -6,25 +6,16 @@ use Aschaeffer\SonataEditableListBundle\Annotation\Listable;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
-use Sonata\DatagridBundle\Pager\Doctrine\Pager;
-use Sonata\DatagridBundle\ProxyQuery\Doctrine\ProxyQuery;
+use Sonata\AdminBundle\Datagrid\SimplePager;
+use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\Doctrine\Entity\BaseEntityManager;
 use Aschaeffer\SonataEditableListBundle\Model\ItemManagerInterface;
 
 class ItemManager extends BaseEntityManager implements ItemManagerInterface
 {
-    /**
-     * @var AnnotationReader
-     */
-    protected $annotationReader;
+    protected AnnotationReader $annotationReader;
 
-    /**
-     * EditableListManager constructor.
-     * @param $class
-     * @param ManagerRegistry $registry
-     * @param AnnotationReader $annotationReader
-     */
-    public function __construct($class, ManagerRegistry $registry, AnnotationReader $annotationReader)
+    public function __construct(string $class, ManagerRegistry $registry, AnnotationReader $annotationReader)
     {
         parent::__construct($class, $registry);
 
@@ -46,7 +37,7 @@ class ItemManager extends BaseEntityManager implements ItemManagerInterface
 
         $query->setParameters($parameters);
 
-        $pager = new Pager();
+        $pager = new SimplePager();
         $pager->setMaxPerPage($limit);
         $pager->setQuery(new ProxyQuery($query));
         $pager->setPage($page);

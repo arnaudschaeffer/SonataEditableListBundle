@@ -3,32 +3,26 @@ namespace Aschaeffer\SonataEditableListBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Sonata\TranslationBundle\Model\Gedmo\AbstractPersonalTranslatable;
-use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
-use Sonata\TranslationBundle\Traits\Gedmo\TranslatableTrait;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 
-abstract class BaseList extends AbstractPersonalTranslatable implements TranslatableInterface
+abstract class BaseList implements TranslatableInterface, TimestampableInterface
 {
-    use TimestampableEntity;
-
+    use TimestampableTrait;
     use TranslatableTrait;
 
-    protected $code;
+    protected ?string $code;
 
-    protected $enabled = false;
+    protected bool $enabled = false;
 
-    protected $name;
+    protected ?string $name;
 
-    protected $items;
-
-    protected $translations;
+    protected ArrayCollection $items;
 
     public function __construct()
     {
-        parent::__construct();
         $this->items = new ArrayCollection();
     }
 

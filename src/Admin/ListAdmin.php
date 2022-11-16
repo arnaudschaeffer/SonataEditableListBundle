@@ -14,8 +14,8 @@ use Sonata\Form\Validator\ErrorElement;
 
 class ListAdmin extends AbstractAdmin
 {
-    protected string $baseRouteName = 'editablelist/list';
-    protected string $baseRoutePattern = 'editablelist/list';
+    protected $baseRouteName = 'editablelist/list';
+    protected $baseRoutePattern = 'editablelist/list';
 
     protected $datagridValues = [
         '_page' => 1,

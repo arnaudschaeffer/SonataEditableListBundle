@@ -116,7 +116,7 @@ abstract class BaseList implements TranslatableInterface, TimestampableInterface
     /**
      * @return int
      */
-    public function getItemCount()
+    public function getItemCount(): int
     {
         return $this->getItems()->count();
     }

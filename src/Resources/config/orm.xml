@@ -6,7 +6,9 @@
             <argument type="service" id="doctrine"/>
             <argument type="service" id="annotations.reader"/>
         </service>
-        <service id="aschaeffer.sonataeditablelist.orm.item_manager" class="Aschaeffer\SonataEditableListBundle\Entity\ItemManager" public="true">
+        <service id="aschaeffer.sonataeditablelist.orm.item_manager"
+                 class="Aschaeffer\SonataEditableListBundle\Entity\ItemManager"
+                 public="true">
             <argument>%aschaeffer.sonataeditablelist.admin.item.entity%</argument>
             <argument type="service" id="doctrine"/>
             <argument type="service" id="annotations.reader"/>

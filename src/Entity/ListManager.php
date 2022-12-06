@@ -18,7 +18,7 @@ class ListManager extends BaseEntityManager
         $this->annotationReader = $annotationReader;
     }
 
-    public function getEntitiesUsage($code = null)
+    public function getEntitiesUsage($code = null): array
     {
         $classNames = [];
 

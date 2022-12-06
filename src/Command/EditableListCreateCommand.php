@@ -2,7 +2,6 @@
 namespace Aschaeffer\SonataEditableListBundle\Command;
 
 use App\Entity\SonataEditableList;
-use Aschaeffer\SonataEditableListBundle\Entity\BaseList;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,7 +12,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * Class EditableListCreateCommand
@@ -28,35 +26,18 @@ class EditableListCreateCommand extends Command
      */
     protected static $defaultName = 'sonata:editable_list:create';
 
-    /**
-     * @var EntityManager $em
-     */
-    protected $em;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * @var Finder
-     */
-    protected $finder;
-
-    /**
-     * @var Reader
-     */
-    protected $annotationReader;
+    protected EntityManagerInterface|EntityManager $em;
+    protected LoggerInterface $logger;
+    protected Finder $finder;
+    protected Reader $annotationReader;
 
     /**
      * EditableListCreateCommand constructor.
-     * @param KernelInterface $appKernel
      * @param EntityManagerInterface $em
      * @param LoggerInterface $logger
      * @param Reader $annotationReader
      */
-    public function __construct(KernelInterface $appKernel,
-                                EntityManagerInterface $em,
+    public function __construct(EntityManagerInterface $em,
                                 LoggerInterface $logger,
                                 Reader $annotationReader)
     {

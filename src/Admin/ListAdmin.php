@@ -17,7 +17,7 @@ class ListAdmin extends AbstractAdmin
     protected $baseRouteName = 'editablelist/list';
     protected $baseRoutePattern = 'editablelist/list';
 
-    protected $datagridValues = [
+    protected array $datagridValues = [
         '_page' => 1,
         '_sort_order' => 'DESC',
         '_sort_by' => 'updated_at',

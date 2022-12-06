@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Aschaeffer\SonataEditableListBundle\Form\Type;
 
+use Aschaeffer\SonataEditableListBundle\Entity\ItemManager;
 use Aschaeffer\SonataEditableListBundle\Form\ChoiceList\ItemChoiceLoader;
 use Sonata\AdminBundle\Form\Type\ModelType;
-use Sonata\Doctrine\Model\ManagerInterface;
 use Sonata\DoctrineORMAdminBundle\FieldDescription\FieldDescription;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
@@ -18,16 +18,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ItemSelectorType extends AbstractType
 {
-    protected ManagerInterface $manager;
+    protected ItemManager $editableItemManager;
     protected RouterInterface $router;
     protected TranslatorInterface $translator;
     protected string $code;
 
-    public function __construct(ManagerInterface $manager,
+    public function __construct(ItemManager $editableItemManager,
                                 RouterInterface $router,
                                 TranslatorInterface $translator)
     {
-        $this->manager = $manager;
+        $this->editableItemManager = $editableItemManager;
         $this->router = $router;
         $this->translator = $translator;
     }
@@ -41,7 +41,6 @@ class ItemSelectorType extends AbstractType
             'help' => function(Options $opts): string{
                 $code = $this->getCode($opts);
                 if (!$code) {
-
                     return "";
                 }
 
@@ -57,13 +56,9 @@ class ItemSelectorType extends AbstractType
 
     protected function getCode(Options $options)
     {
-        if (array_key_exists('listable_code', $options)) {
-            return $options['listable_code'];
-        }
-
         $className = $this->getClass($options);
         $fieldName = $this->getFieldName($options);
-        $code = $this->manager->getListableCode($className, $fieldName);
+        $code = $this->editableItemManager->getListableCode($className, $fieldName);
 
         if ($code === null) {
             throw new \Exception(sprintf("Is there a @Listable annotation on property %s for entity %s ?", $className, $fieldName));
@@ -80,7 +75,7 @@ class ItemSelectorType extends AbstractType
     public function getChoices(Options $options)
     {
         $code = $this->getCode($options);
-        $items = $this->manager->getChoices($code);
+        $items = $this->editableItemManager->getChoices($code);
 
         $choices = [];
 

@@ -15,7 +15,9 @@ class ItemManager extends BaseEntityManager implements ItemManagerInterface
 {
     protected AnnotationReader $annotationReader;
 
-    public function __construct(string $class, ManagerRegistry $registry, AnnotationReader $annotationReader)
+    public function __construct(string $class,
+                                ManagerRegistry $registry,
+                                AnnotationReader $annotationReader)
     {
         parent::__construct($class, $registry);
 
@@ -71,7 +73,7 @@ class ItemManager extends BaseEntityManager implements ItemManagerInterface
      * @param bool $flip
      * @return array|null
      */
-    public function getListChoices($propertyName, $subject, $className, $flip = false)
+    public function getListChoices($propertyName, $subject, $className, bool $flip = false)
     {
         $code = $this->getListableCode($className, $propertyName);
         $list = [];
@@ -85,8 +87,8 @@ class ItemManager extends BaseEntityManager implements ItemManagerInterface
         $orm = $this->annotationReader->getPropertyAnnotation($property, 'Doctrine\\ORM\\Mapping\\Column');
 
         $locale = null;
-        if ($subject && method_exists($subject, 'getLocale')) {
-            $locale = $subject->getLocale();
+        if ($subject && method_exists($subject, 'getCurrentLocale')) {
+            $locale = $subject->getCurrentLocale();
         }
 
         $results = $this->getChoices($code, $locale);
@@ -111,32 +113,6 @@ class ItemManager extends BaseEntityManager implements ItemManagerInterface
         return $list;
     }
 
-//    public function getLabels($values, $code, $implode = ', ')
-//    {
-//        $labels = $this->getRepository()->createQueryBuilder('i')
-//            ->select('name')
-//            ->innerJoin('i.list', 'l')
-//            ->where('l.code = :code')->setParameter('code', $code)
-//            ->where('i.value IN (:values)')->setParameter('values', $values)
-//            ->getQuery()->getScalarResult();
-//
-//        return implode($implode, $labels);
-//    }
-
-//    public function getLocales($locale = null)
-//    {
-//        return $this->getRepository()->createQueryBuilder('i')
-//            ->select('l.code, i.name, i.value')
-//            ->innerJoin('i.list', 'l')
-//            ->where('l.enabled = true')
-//            ->where('i.enabled = true')
-//            ->getQuery()
-//            ->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker')
-//            ->setHint(\Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE, $locale)
-//            ->setHint(Query::HINT_REFRESH, true)
-//            ->getScalarResult();
-//    }
-
     public function getChoices($code, $locale = null)
     {
         $query = $this->getRepository()->createQueryBuilder('i')
@@ -145,32 +121,7 @@ class ItemManager extends BaseEntityManager implements ItemManagerInterface
             ->getQuery()
         ;
 
-        if ($locale != null) {
-            $query
-                ->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker')
-                ->setHint(\Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE, $locale)
-                ->setHint(Query::HINT_REFRESH, true);
-        }
-
         return $query
             ->getResult();
     }
-
-//    /**
-//     * @param $id
-//     * @return null|object
-//     */
-//    public function getById($id)
-//    {
-//        return $this->getRepository()->find($id);
-//    }
-//
-//    /**
-//     * @param $ids
-//     * @return array
-//     */
-//    public function getByIds($ids)
-//    {
-//        return $this->getRepository()->findBy(['id' => $ids]);
-//    }
 }

@@ -4,8 +4,7 @@
     <parameters>
         <parameter key="aschaeffer.sonataeditablelist.admin.groupname">sonata_editablelist</parameter>
         <parameter key="aschaeffer.sonataeditablelist.admin.label_catalogue">SonataEditableListBundle</parameter>
-        <parameter key="aschaeffer.sonataeditablelist.admin.groupicon">
-            <![CDATA[<i class='fa fa-list'></i>]]></parameter>
+        <parameter key="aschaeffer.sonataeditablelist.admin.groupicon">fa fa-list</parameter>
     </parameters>
     <services>
         <service id="aschaeffer.sonataeditablelist.admin.list" class="%aschaeffer.sonataeditablelist.admin.list.class%"

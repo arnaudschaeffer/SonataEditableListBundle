@@ -7,5 +7,6 @@
             <argument type="service" id="router.default"/>
             <argument type="service" id="translator.data_collector"/>
         </service>
+
     </services>
 </container>

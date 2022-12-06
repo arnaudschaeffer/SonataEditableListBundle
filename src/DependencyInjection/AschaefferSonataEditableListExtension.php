@@ -22,7 +22,6 @@ class AschaefferSonataEditableListExtension extends Extension
         $loader->load('orm.xml');
         $loader->load('admin_orm.xml');
         $loader->load('command.xml');
-        $loader->load('service_admin.xml');
         $loader->load('form.xml');
 
         $this->configureAdminClass($config, $container);

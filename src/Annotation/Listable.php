@@ -13,15 +13,10 @@ class Listable
 
     /**
      * @Required
-     *
-     * @var string
      */
-    public $code;
+    public string $code;
 
-    /**
-     * @return string
-     */
-    public function getCode()
+    public function getCode(): string
     {
         return $this->code;
     }

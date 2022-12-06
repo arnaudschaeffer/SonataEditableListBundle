@@ -75,7 +75,7 @@ abstract class BaseItem implements TranslatableInterface, TimestampableInterface
         return $this->position;
     }
 
-    public function setPosition(int $position): BaseItem
+    public function setPosition(int $position): self
     {
         $this->position = $position;
         return $this;

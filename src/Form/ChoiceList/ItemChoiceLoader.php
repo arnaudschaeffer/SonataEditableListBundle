@@ -10,8 +10,8 @@ use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 
 final class ItemChoiceLoader implements ChoiceLoaderInterface
 {
-    private ArrayChoiceList $choiceList;
-    private array $choices;
+    private ?ArrayChoiceList $choiceList = null;
+    private array $choices = [];
 
     /**
      * @param array $choices

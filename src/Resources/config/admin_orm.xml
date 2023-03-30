@@ -18,7 +18,7 @@
                  icon="%aschaeffer.sonataeditablelist.admin.groupicon%"/>
             <argument/>
             <argument>%aschaeffer.sonataeditablelist.admin.list.entity%</argument>
-            <argument>%aschaeffer.sonataeditablelist.admin.list.controller%</argument>
+            <argument />
             <call method="setListManager">
                 <argument type="service" id="aschaeffer.sonataeditablelist.orm.list_manager"/>
             </call>

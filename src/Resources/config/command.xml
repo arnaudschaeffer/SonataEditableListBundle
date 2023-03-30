@@ -3,7 +3,6 @@
     <services>
         <service id="Aschaeffer\SonataEditableListBundle\Command\EditableListCreateCommand" class="Aschaeffer\SonataEditableListBundle\Command\EditableListCreateCommand" public="true">
             <tag name="console.command"/>
-            <argument type="service" id="kernel"/>
             <argument type="service" id="doctrine.orm.default_entity_manager"/>
             <argument type="service" id="monolog.logger"/>
             <argument type="service" id="annotations.reader"/>

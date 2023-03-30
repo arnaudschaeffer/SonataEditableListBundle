@@ -19,7 +19,9 @@ abstract class BaseList implements TranslatableInterface, TimestampableInterface
 
     protected ?string $name;
 
-    protected ArrayCollection $items;
+    protected Collection $items;
+
+    public ?string $usage = null;
 
     public function __construct()
     {

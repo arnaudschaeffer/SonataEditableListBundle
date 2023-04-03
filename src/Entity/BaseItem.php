@@ -30,17 +30,6 @@ abstract class BaseItem implements TranslatableInterface, TimestampableInterface
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-        return $this;
-    }
-
     public function getEnabled(): ?bool
     {
         return $this->enabled;

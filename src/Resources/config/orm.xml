@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="aschaeffer.sonataeditablelist.orm.list_manager" class="Aschaeffer\SonataEditableListBundle\Entity\ListManager" public="true">
+        <service id="aschaeffer.sonataeditablelist.orm.list_manager"
+                 class="Aschaeffer\SonataEditableListBundle\Entity\ListManager"
+                 public="true">
             <argument>%aschaeffer.sonataeditablelist.admin.list.entity%</argument>
             <argument type="service" id="doctrine"/>
             <argument type="service" id="annotations.reader"/>

@@ -75,7 +75,7 @@ class ListAdmin extends AbstractAdmin
                         'edit' => 'inline',
                         'inline' => 'table',
                         'sortable' => 'position',
-                        'link_parameters' => ['from_list' => true, 'locale' => $this->getSubject()->getLocale(),],
+                        'link_parameters' => ['from_list' => true, 'locale' => $this->getSubject()->getCurrentLocale(),],
                     ])
                 ->end()
             ->ifEnd()
@@ -85,7 +85,7 @@ class ListAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->addIdentifier('code')
+            ->addIdentifier('code', null, ['route' => ['name' => 'edit']])
             ->add('name')
             ->add('enabled', null, ['editable' => true])
             ->add('itemCount', null, ['template' => '@AschaefferSonataEditableList/ListAdmin/badge_count.html.twig',])
@@ -96,7 +96,7 @@ class ListAdmin extends AbstractAdmin
     public function validate(ErrorElement $errorElement, $object)
     {
         foreach ($object->getItems() as $item) {
-            $item->setLocale($object->getLocale());
+            $item->setLocale($object->getCurrentLocale());
         }
     }
 }

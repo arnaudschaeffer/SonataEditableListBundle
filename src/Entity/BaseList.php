@@ -51,22 +51,6 @@ abstract class BaseList implements TranslatableInterface, TimestampableInterface
     /**
      * @return string
      */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
     public function getCode(): ?string
     {
         return $this->code;

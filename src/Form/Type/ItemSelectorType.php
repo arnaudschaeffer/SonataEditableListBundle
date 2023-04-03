@@ -80,7 +80,9 @@ class ItemSelectorType extends AbstractType
         $choices = [];
 
         foreach ($items as $item) {
-            $choices[$item->getId()] = $item->getName();
+            if ($item->getValue() && $item->getValue() != "") {
+                $choices[$item->getId()] = $item->getName();
+            }
         }
 
         return $choices;

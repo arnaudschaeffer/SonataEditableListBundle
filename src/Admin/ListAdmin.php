@@ -2,6 +2,7 @@
 
 namespace Aschaeffer\SonataEditableListBundle\Admin;
 
+use Aschaeffer\SonataEditableListBundle\Entity\BaseList;
 use Aschaeffer\SonataEditableListBundle\Entity\ListManager;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,7 +10,6 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\Form\Type\CollectionType;
-use Sonata\Form\Validator\ErrorElement;
 
 
 class ListAdmin extends AbstractAdmin
@@ -23,7 +23,7 @@ class ListAdmin extends AbstractAdmin
         '_sort_by' => 'updated_at',
     ];
 
-    protected EntityManagerInterface $em;
+    protected EntityManagerInterface $entityManager;
     protected ListManager $listManager;
     protected Reader $annotationReader;
 
@@ -34,6 +34,11 @@ class ListAdmin extends AbstractAdmin
         parent::__construct($code, $class, $baseControllerName);
     }
 
+    public function setEntityManager(EntityManagerInterface $entityManager): void
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function setListManager(ListManager $listManager): void
     {
         $this->listManager = $listManager;
@@ -42,6 +47,21 @@ class ListAdmin extends AbstractAdmin
     public function getListManager(): ListManager
     {
         return $this->listManager;
+    }
+
+    /**
+     * @param BaseList $object
+     */
+    public function postUpdate(object $object): void
+    {
+        foreach ($object->getItems() as $item) {
+            $item->setCurrentLocale($object->getCurrentLocale());
+            $item->translate($object->getCurrentLocale());
+            $item->mergeNewTranslations();
+            $this->entityManager->persist($item);
+        }
+
+        $this->entityManager->flush();
     }
 
     protected function configureFormFields(FormMapper $form): void
@@ -75,12 +95,35 @@ class ListAdmin extends AbstractAdmin
                         'edit' => 'inline',
                         'inline' => 'table',
                         'sortable' => 'position',
-                        'link_parameters' => ['from_list' => true, 'locale' => $this->getSubject()->getCurrentLocale(),],
+                        'link_parameters' => ['from_list' => true, 'currentLocale' => $this->getSubject()->getCurrentLocale(),],
                     ])
                 ->end()
             ->ifEnd()
         ;
     }
+
+//    protected function updateTranslations($object)
+//    {
+//        foreach ($object->getItems() as $item) {
+//            dd($item);
+//            $this->entityManager->persist($item);
+//        }
+//        $this->entityManager->flush();
+//    }
+//
+//    public function postPersist(object $object): void
+//    {
+//        parent::postPersist($object);
+//
+//        $this->updateTranslations($object);
+//    }
+//
+//    public function postUpdate(object $object): void
+//    {
+//        parent::postUpdate($object);
+//
+//        $this->updateTranslations($object);
+//    }
 
     protected function configureListFields(ListMapper $list): void
     {
@@ -91,12 +134,5 @@ class ListAdmin extends AbstractAdmin
             ->add('itemCount', null, ['template' => '@AschaefferSonataEditableList/ListAdmin/badge_count.html.twig',])
             ->add('usage', null, ['template' => '@AschaefferSonataEditableList/ListAdmin/usage_count.html.twig', 'data' => $this->listManager->getEntitiesUsage()])
         ;
-    }
-
-    public function validate(ErrorElement $errorElement, $object)
-    {
-        foreach ($object->getItems() as $item) {
-            $item->setLocale($object->getCurrentLocale());
-        }
     }
 }

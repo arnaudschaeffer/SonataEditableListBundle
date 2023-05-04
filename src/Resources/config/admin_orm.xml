@@ -19,6 +19,9 @@
             <argument/>
             <argument>%aschaeffer.sonataeditablelist.admin.list.entity%</argument>
             <argument />
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.entity_manager"/>
+            </call>
             <call method="setListManager">
                 <argument type="service" id="aschaeffer.sonataeditablelist.orm.list_manager"/>
             </call>
@@ -37,7 +40,8 @@
                  show_in_dashboard="false"/>
             <argument/>
             <argument>%aschaeffer.sonataeditablelist.admin.item.entity%</argument>
-            <argument>%aschaeffer.sonataeditablelist.admin.item.controller%</argument>
+            <argument/>
+<!--            <argument>%aschaeffer.sonataeditablelist.admin.item.controller%</argument>-->
             <call method="setTranslationDomain">
                 <argument>%aschaeffer.sonataeditablelist.admin.item.translation_domain%</argument>
             </call>

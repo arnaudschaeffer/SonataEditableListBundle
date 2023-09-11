@@ -5,7 +5,7 @@
             <tag name="form.type" alias="sonata_category_selector"/>
             <argument type="service" id="aschaeffer.sonataeditablelist.orm.item_manager"/>
             <argument type="service" id="router.default"/>
-            <argument type="service" id="translator.data_collector"/>
+            <argument type="service" id="translator.default"/>
         </service>
 
     </services>

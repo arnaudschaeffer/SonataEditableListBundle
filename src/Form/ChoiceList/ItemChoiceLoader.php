@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Aschaeffer\SonataEditableListBundle\Form\ChoiceList;
 
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
+use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 
 final class ItemChoiceLoader implements ChoiceLoaderInterface
@@ -21,7 +22,7 @@ final class ItemChoiceLoader implements ChoiceLoaderInterface
         $this->choices = $choices;
     }
 
-    public function loadChoiceList($value = null)
+    public function loadChoiceList(?callable $value = null): ChoiceListInterface
     {
         if (null !== $this->choiceList) {
             return $this->choiceList;
